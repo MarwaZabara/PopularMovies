@@ -13,5 +13,6 @@ let Size: String = "w185"
 let Popularity :String = "popularity.desc"
 let Rating :String = "rating.desc"
 var SortWith :String = Rating
+let VideoBaseURL = "https://www.youtube.com/watch?v="
 
 

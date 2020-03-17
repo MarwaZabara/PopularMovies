@@ -21,8 +21,11 @@
 		5B5538132416F08E009A2829 /* PopularMoviesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5538122416F08E009A2829 /* PopularMoviesTests.swift */; };
 		5B55381E2416F08E009A2829 /* PopularMoviesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B55381D2416F08E009A2829 /* PopularMoviesUITests.swift */; };
 		5B55382D2416F1DF009A2829 /* TrailerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B55382C2416F1DF009A2829 /* TrailerCell.swift */; };
-		5B5538322416F4DF009A2829 /* HomeVCold.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5538302416F4DF009A2829 /* HomeVCold.swift */; };
+		5B5F6BFA24201E4D002C42A2 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5F6BF924201E4D002C42A2 /* Reachability.swift */; };
+		5B5F6BFC24203029002C42A2 /* FavouritesTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5F6BFB24203029002C42A2 /* FavouritesTableVC.swift */; };
+		5B5F6BFE242031D7002C42A2 /* FaveCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5F6BFD242031D7002C42A2 /* FaveCell.swift */; };
 		5B9ADC05241A9C1700BBF1C3 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9ADC04241A9C1700BBF1C3 /* Movie.swift */; };
+		5BEE7BCC241C3ACE00109012 /* Trailer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEE7BCB241C3ACE00109012 /* Trailer.swift */; };
 		E25D02FFF69039B437D6CC08 /* Pods_PopularMovies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C17A5688372878E169D58620 /* Pods_PopularMovies.framework */; };
 		E555928AD9C717E05FF60DDB /* Pods_PopularMoviesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19EA9AA8AAC3F9F931673A29 /* Pods_PopularMoviesTests.framework */; };
 /* End PBXBuildFile section */
@@ -67,8 +70,11 @@
 		5B55381D2416F08E009A2829 /* PopularMoviesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMoviesUITests.swift; sourceTree = "<group>"; };
 		5B55381F2416F08E009A2829 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B55382C2416F1DF009A2829 /* TrailerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailerCell.swift; sourceTree = "<group>"; };
-		5B5538302416F4DF009A2829 /* HomeVCold.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVCold.swift; sourceTree = "<group>"; };
+		5B5F6BF924201E4D002C42A2 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		5B5F6BFB24203029002C42A2 /* FavouritesTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesTableVC.swift; sourceTree = "<group>"; };
+		5B5F6BFD242031D7002C42A2 /* FaveCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaveCell.swift; sourceTree = "<group>"; };
 		5B9ADC04241A9C1700BBF1C3 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		5BEE7BCB241C3ACE00109012 /* Trailer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trailer.swift; sourceTree = "<group>"; };
 		6A4B6F0712C7809D064AAF93 /* Pods-PopularMoviesUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PopularMoviesUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PopularMoviesUITests/Pods-PopularMoviesUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		856E229D1FCF5573C0DAFBCE /* Pods_PopularMoviesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PopularMoviesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		863E9D9A004F884F0D84E0AE /* Pods-PopularMovies.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PopularMovies.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PopularMovies/Pods-PopularMovies.debug.xcconfig"; sourceTree = "<group>"; };
@@ -177,7 +183,10 @@
 		5B55382B2416F1B8009A2829 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5B0DCE422417BEDF00DE92B3 /* CollectionViewCell.xib */,
+				5B0DCE412417BEDF00DE92B3 /* CollectionViewCell.swift */,
 				5B55382C2416F1DF009A2829 /* TrailerCell.swift */,
+				5B5F6BFD242031D7002C42A2 /* FaveCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -185,11 +194,9 @@
 		5B55382E2416F4DF009A2829 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				5B5F6BFB24203029002C42A2 /* FavouritesTableVC.swift */,
 				5B5537FC2416F08C009A2829 /* DetailsVC.swift */,
-				5B5538302416F4DF009A2829 /* HomeVCold.swift */,
 				5B0DCE3F2417B2B800DE92B3 /* HomeVC.swift */,
-				5B0DCE412417BEDF00DE92B3 /* CollectionViewCell.swift */,
-				5B0DCE422417BEDF00DE92B3 /* CollectionViewCell.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -199,6 +206,8 @@
 			children = (
 				5B9ADC04241A9C1700BBF1C3 /* Movie.swift */,
 				5B1AE8DE241ABFD800044575 /* Constants.swift */,
+				5BEE7BCB241C3ACE00109012 /* Trailer.swift */,
+				5B5F6BF924201E4D002C42A2 /* Reachability.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -356,16 +365,20 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-PopularMovies/Pods-PopularMovies-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/YoutubePlayer-in-WKWebView/YoutubePlayer_in_WKWebView.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YoutubePlayer_in_WKWebView.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -445,13 +458,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B5F6BFE242031D7002C42A2 /* FaveCell.swift in Sources */,
 				5B5538032416F08C009A2829 /* PopularMovies.xcdatamodeld in Sources */,
+				5BEE7BCC241C3ACE00109012 /* Trailer.swift in Sources */,
 				5B5537FD2416F08C009A2829 /* DetailsVC.swift in Sources */,
 				5B5537FB2416F08C009A2829 /* AppDelegate.swift in Sources */,
 				5B0DCE432417BEDF00DE92B3 /* CollectionViewCell.swift in Sources */,
-				5B5538322416F4DF009A2829 /* HomeVCold.swift in Sources */,
 				5B55382D2416F1DF009A2829 /* TrailerCell.swift in Sources */,
+				5B5F6BFA24201E4D002C42A2 /* Reachability.swift in Sources */,
 				5B9ADC05241A9C1700BBF1C3 /* Movie.swift in Sources */,
+				5B5F6BFC24203029002C42A2 /* FavouritesTableVC.swift in Sources */,
 				5B0DCE402417B2B800DE92B3 /* HomeVC.swift in Sources */,
 				5B1AE8DF241ABFD800044575 /* Constants.swift in Sources */,
 			);
@@ -635,6 +651,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q79RAUUY3Q;
 				INFOPLIST_FILE = PopularMovies/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -644,7 +661,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_REFLECTION_METADATA_LEVEL = none;
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -657,6 +674,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q79RAUUY3Q;
 				INFOPLIST_FILE = PopularMovies/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -665,7 +683,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_REFLECTION_METADATA_LEVEL = none;
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

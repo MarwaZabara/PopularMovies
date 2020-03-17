@@ -10,10 +10,11 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import SDWebImage
-
-struct Item {
-   var imageName: String
-}
+import CoreData
+//
+//struct Item {
+//   var imageName: String
+//}
 class HomeVC: UIViewController {
     @IBOutlet weak var SortType: UISegmentedControl!
     var Movies: [Movie] = []
@@ -47,16 +48,16 @@ class HomeVC: UIViewController {
    
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var items: [Item] = [Item(imageName: "1"),
-                         Item(imageName: "macbook4"),
-                         Item(imageName: "macbook"),
-                         Item(imageName: "1"),
-                         Item(imageName: "macbook4"),
-                         Item(imageName: "macbook"),
-                         Item(imageName: "1"),
-                         Item(imageName: "macbook4"),
-                         Item(imageName: "macbook"),
-                         Item(imageName: "1")]
+//    var items: [Item] = [Item(imageName: "1"),
+//                         Item(imageName: "macbook4"),
+//                         Item(imageName: "macbook"),
+//                         Item(imageName: "1"),
+//                         Item(imageName: "macbook4"),
+//                         Item(imageName: "macbook"),
+//                         Item(imageName: "1"),
+//                         Item(imageName: "macbook4"),
+//                         Item(imageName: "macbook"),
+//                         Item(imageName: "1")]
     
     var CollectionViewFlowLayout: UICollectionViewFlowLayout!
     let cellIdentifier = "CollectionViewCell"
@@ -72,20 +73,73 @@ class HomeVC: UIViewController {
     }
     
     func LoadData(){
+        if Reachability.isConnectedToNetwork(){
+            print("Internet Connection Available!")
         Alamofire.request("https://api.themoviedb.org/3/discover/movie?api_key=6557d01ac95a807a036e5e9e325bb3f0&sort_by=" + SortWith).responseJSON { (Response) in
             let json = JSON(Response.value)
             print("!!!!!!!!!!!!!!!!!!!")
             print("in load data sortwith = ",SortWith)
             json["results"].array?.forEach({ (currentMovie) in
-                let currentMovie = Movie(id: currentMovie["id"].stringValue, video: currentMovie["Video"].stringValue, release_date: currentMovie["release_date"].stringValue, original_title: currentMovie["original_title"].stringValue, poster_Path: currentMovie["poster_path"].stringValue, overview: currentMovie["overview"].stringValue, Rate: currentMovie["vote_average"].stringValue)
+                let name = currentMovie["original_title"].stringValue
+                let rate = currentMovie["vote_average"].floatValue
+                let overview = currentMovie["overview"].stringValue
+                let poster = currentMovie["poster_path"].stringValue
+                let date = currentMovie["release_date"].stringValue
+                let id = currentMovie["id"].stringValue
+                let currentMovie = Movie(id:id , release_date: date, original_title: name, poster_Path:poster , overview:overview , Rate: rate)
                 self.Movies.append(currentMovie)
-                print("current movie title = ",self.Movies[0].original_title)
-                print(".....................")
+                let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+                let entity = NSEntityDescription.entity(forEntityName: "Movies", in: context)
+                let newEntity = NSManagedObject(entity: entity!, insertInto: context)
+                newEntity.setValue(name, forKey: "name")
+                newEntity.setValue(overview, forKey: "overview")
+                newEntity.setValue(rate, forKey: "rate")
+                newEntity.setValue(id, forKey: "id")
+                newEntity.setValue(date, forKey: "date")
+                newEntity.setValue(poster, forKey: "path")
+
+                do{
+                    try context.save()
+                    print("WELL SAVED")
+                }
+                catch{
+                    print("FAILED TO SAVE")
+                }
+
+                print("FROM ALAMOFIRE.....................")
                 self.collectionView.reloadData()
                 
                 
             })
-        }
+            }}
+    else{
+    print("Internet Connection not Available!")
+            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Movies")
+            request.returnsObjectsAsFaults = false
+            do{
+                let result = try context.fetch(request)
+                for data in result as! [NSManagedObject]{
+                    let name = data.value(forKey: "name")
+                    let rate = data.value(forKey: "rate")
+                    let overview = data.value(forKey: "overview")
+                    let date = data.value(forKey: "date")
+                    let id = data.value(forKey: "id")
+                    let path = data.value(forKey: "path")
+                    let currentMovie = Movie(id:id as! String , release_date: date as! String, original_title: name as! String, poster_Path:path as! String , overview:overview as! String , Rate: rate as! Float)
+                    self.Movies.append(currentMovie)
+                    
+                    
+                }
+            }
+            catch{
+                print("FETCHING FAILED")
+                
+            }
+            print("FROM COREDATA.....................")
+            self.collectionView.reloadData()
+     
+    }
         
         
     }
@@ -110,10 +164,10 @@ class HomeVC: UIViewController {
             
             let numberOfItemPerRow: CGFloat = 2
             let lineSpacing: CGFloat = 5
-            let insertItemSpacing: CGFloat = 10
+            let insertItemSpacing: CGFloat = 15
             
             let width = (collectionView.frame.width - (numberOfItemPerRow - 1) * insertItemSpacing) / numberOfItemPerRow
-            let hieght = width * 2
+            let hieght = width * 1.5
             
             CollectionViewFlowLayout = UICollectionViewFlowLayout()
             CollectionViewFlowLayout.itemSize = CGSize(width: width, height: hieght)
